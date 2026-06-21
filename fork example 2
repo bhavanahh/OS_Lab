@@ -1,0 +1,27 @@
+Example 2
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h> // For fork() and getpid()
+#include <sys/wait.h>
+int main() {
+int num_processes = 3; // Number of child processes to create
+pid_t child_pid;
+printf("Parent process (PID %d) is creating child processes...\n", getpid());
+for (int i = 0; i < num_processes; ++i) {
+child_pid = fork(); // Create a child process
+if (child_pid == -1) {
+perror("Error creating child process");
+exit(EXIT_FAILURE);
+} else if (child_pid == 0) {
+// Child process
+printf("Child process (PID %d) created by parent (PID %d)\n", getpid(), getppid());
+exit(EXIT_SUCCESS); // Child process exits
+}
+}
+// Parent process waits for all child processes to finish
+for (int i = 0; i < num_processes; ++i) {
+wait(NULL);
+}
+printf("Parent process (PID %d) has finished creating child processes.\n", getpid());
+return 0;
+}
