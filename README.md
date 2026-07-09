@@ -1,6 +1,5 @@
 # Operating Systems Lab
 
-
 Hi, I'm Bhavana 👋
 
 I am a Computer Science and Engineering student (2024–2028 batch) at the College of Engineering Perumon.
